@@ -1,62 +1,80 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-const login = ref("");
-const password = ref("");
-const erreur = ref("");
-const erreurP = ref("");
-const router = useRouter();
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const login = ref('')
+const password = ref('')
+const erreur = ref('')
+const erreurP = ref('')
+const router = useRouter()
 const validerAuthentification = () => {
-    if (login.value === "admin" && password.value === "admin") {
-        login.value = "";
-        password.value = "";
-        router.push('/timetable');
+  if (login.value === 'admin' && password.value === 'admin') {
+    login.value = ''
+    password.value = ''
+    router.push('/timetable')
+  } else {
+    if (login.value === 'admin') {
+      erreur.value = ''
     } else {
-        if (login.value === "admin") {
-            erreur.value = "";
-        } else {
-            erreur.value = "Le username doit être 'admin'";
-        }
-
-        if (password.value === "admin") {
-            erreurP.value = "";
-        } else {
-            erreurP.value = "Mot de passe incorrect"
-        }
+      erreur.value = "Le username doit être 'admin'"
     }
-}    
+
+    if (password.value === 'admin') {
+      erreurP.value = ''
+    } else {
+      erreurP.value = 'Mot de passe incorrect'
+    }
+  }
+}
 </script>
 
 <template>
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-          <!-- Tabs Titles -->
-          <h2 class="active"> Sign In </h2>
-          <h2 class="inactive underlineHover">Sign Up </h2>
-      
-          <!-- Icon -->
-          <div class="fadeIn first">
-            <!-- lien du site de l'icone 
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active">Sign In</h2>
+      <h2 class="inactive underlineHover">Sign Up</h2>
+
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <!-- lien du site de l'icone 
                 https://www.flaticon.com/free-icon/login_295128?term=login&page=1&position=3&origin=search&related_id=295128-->
-            <img src="../assets/images/login.png" id="icon" alt="User Icon" style="width: 50px; height: 50px;"/>
-          </div>
-      
-          <!-- Login Form -->
-          <form @submit.prevent="validerAuthentification">
-            <input v-model.trim="login" type="text" id="login" class="fadeIn second" name="login" placeholder="login = admin ">
-            <div v-if="erreur" class="erreur">{{ erreur }}</div>
-            <input v-model="password" type="text" id="password" class="fadeIn third" name="login" placeholder="password = admin">
-            <div v-if="erreurP" class="erreurP">{{ erreurP }}</div>
-            <input type="submit" class="fadeIn fourth" value="Log In">
-          </form>
-      
-          <!-- Remind Passowrd -->
-          <div id="formFooter">
-            <a class="underlineHover" href="#">Forgot Password?</a>
-          </div>
-      
-        </div>
+        <img
+          src="../assets/images/login.png"
+          id="icon"
+          alt="User Icon"
+          style="width: 50px; height: 50px"
+        />
       </div>
+
+      <!-- Login Form -->
+      <form @submit.prevent="validerAuthentification">
+        <input
+          v-model.trim="login"
+          type="text"
+          id="login"
+          class="fadeIn second"
+          name="login"
+          placeholder="login = admin "
+        />
+        <div v-if="erreur" class="erreur">{{ erreur }}</div>
+        <input
+          v-model="password"
+          type="text"
+          id="password"
+          class="fadeIn third"
+          name="login"
+          placeholder="password = admin"
+        />
+        <div v-if="erreurP" class="erreurP">{{ erreurP }}</div>
+        <input type="submit" class="fadeIn fourth" value="Log In" />
+      </form>
+
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -65,24 +83,24 @@ const validerAuthentification = () => {
 /* BASIC */
 body {
   background-color: #56baed;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   height: 100vh;
 }
 
 .userIconLogo {
-    width: 50px; 
-    height: 50px;
-
+  width: 50px;
+  height: 50px;
 }
 
-.erreur, .erreurP {
-    color : red;
-    display: flex;
-    justify-content: center;
+.erreur,
+.erreurP {
+  color: red;
+  display: flex;
+  justify-content: center;
 }
 a {
   color: #92badd;
-  display:inline-block;
+  display: inline-block;
   text-decoration: none;
   font-weight: 400;
 }
@@ -92,19 +110,17 @@ h2 {
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
-  display:inline-block;
-  margin: 40px 8px 10px 8px; 
+  display: inline-block;
+  margin: 40px 8px 10px 8px;
   color: #cccccc;
 }
-
-
 
 /* STRUCTURE */
 
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
@@ -118,8 +134,8 @@ h2 {
   width: 90%;
   max-width: 450px;
   position: relative;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
@@ -132,8 +148,6 @@ h2 {
   border-radius: 0 0 10px 10px;
 }
 
-
-
 /* TABS */
 
 h2.inactive {
@@ -145,11 +159,11 @@ h2.active {
   border-bottom: 2px solid #5fbae9;
 }
 
-
-
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+input[type='button'],
+input[type='submit'],
+input[type='reset'] {
   background-color: #56baed;
   border: none;
   color: white;
@@ -159,8 +173,8 @@ input[type=button], input[type=submit], input[type=reset]  {
   display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+  box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   margin: 5px 20px 40px 20px;
@@ -171,11 +185,15 @@ input[type=button], input[type=submit], input[type=reset]  {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+input[type='button']:hover,
+input[type='submit']:hover,
+input[type='reset']:hover {
   background-color: #39ace7;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+input[type='button']:active,
+input[type='submit']:active,
+input[type='reset']:active {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -183,7 +201,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type='text'] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -204,16 +222,14 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type='text']:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+input[type='text']:placeholder {
   color: #cccccc;
 }
-
-
 
 /* ANIMATIONS */
 
@@ -254,23 +270,44 @@ input[type=text]:placeholder {
 }
 
 /* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .fadeIn {
-  opacity:0;
-  -webkit-animation:fadeIn ease-in 1;
-  -moz-animation:fadeIn ease-in 1;
-  animation:fadeIn ease-in 1;
+  opacity: 0;
+  -webkit-animation: fadeIn ease-in 1;
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
 
-  -webkit-animation-fill-mode:forwards;
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-  -webkit-animation-duration:1s;
-  -moz-animation-duration:1s;
-  animation-duration:1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
 }
 
 .fadeIn.first {
@@ -305,7 +342,7 @@ input[type=text]:placeholder {
   width: 0;
   height: 2px;
   background-color: #56baed;
-  content: "";
+  content: '';
   transition: width 0.2s;
 }
 
@@ -313,20 +350,18 @@ input[type=text]:placeholder {
   color: #0d0d0d;
 }
 
-.underlineHover:hover:after{
+.underlineHover:hover:after {
   width: 100%;
 }
-
-
 
 /* OTHERS */
 
 *:focus {
-    outline: none;
-} 
+  outline: none;
+}
 
 #icon {
-  width:60%;
+  width: 60%;
 }
 
 * {

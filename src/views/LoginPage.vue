@@ -1,11 +1,10 @@
 <script setup>
-import LoginForm from '../components/LoginForm.vue';
-document.title = "Login Page"
+import LoginForm from '../components/LoginForm.vue'
+document.title = 'Login Page'
 </script>
 
 <template>
-    <LoginForm />
+  <LoginForm />
 </template>
 
-<style scoped> 
-</style>
+<style scoped></style>
